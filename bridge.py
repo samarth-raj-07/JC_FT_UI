@@ -1,9 +1,10 @@
+# BRIDGE
 import socket
 
 # Bridge PC settings
 BRIDGE_HOST = ""  # Listen on all interfaces
 BRIDGE_PORT = 5000  # Port for communication with Signal PC
-SERVER_PC_IP = "192.168.0.110"  # Update with actual Server PC IP
+SERVER_PC_IP = "192.168.0.110"  # Server PC IP
 SERVER_PC_PORT = 6000  # Port on which Server PC is listening
 
 def handle_client(conn):
@@ -17,11 +18,13 @@ def handle_client(conn):
 
     # Receive the file from Server PC
     with open(filename, "wb") as file:
+        received_data=False
         while True:
             data = server_conn.recv(4096)
             if not data:
                 break
             file.write(data)
+            received_data=True
     server_conn.close()
 
     # Send file to Signal PC
