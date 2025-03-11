@@ -1,4 +1,4 @@
-# BRIDGE
+# BRIDGE code
 import socket
 
 # Bridge PC settings
