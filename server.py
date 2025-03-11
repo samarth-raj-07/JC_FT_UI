@@ -4,7 +4,7 @@ import os
 # Server PC settings
 HOST = "0.0.0.0"  # Listen on all interfaces
 PORT = 6000  # Port for communication with Bridge PC
-FILE_DIRECTORY = "/files/test.txt"  # Update with the actual directory path
+FILE_DIRECTORY = "/files"  # Update with the actual directory path
 
 def handle_client(conn):
     filename = conn.recv(1024).decode()

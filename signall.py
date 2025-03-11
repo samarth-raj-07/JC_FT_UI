@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 # Bridge PC IP and Port (Update with actual IP of Bridge PC)
-BRIDGE_PC_IP = "192.168.56.1"  
+BRIDGE_PC_IP = "192.168.0.107"  
 BRIDGE_PC_PORT = 5000  
 
 def request_file():
