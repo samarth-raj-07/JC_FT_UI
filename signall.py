@@ -1,11 +1,10 @@
-#Signall
 import socket
 import tkinter as tk
 from tkinter import messagebox
 
-# Bridge PC IP and Port (Update with actual IP of Bridge PC)
+# Bridge PC IP and Port 
 BRIDGE_PC_IP = "192.168.0.107"  
-BRIDGE_PC_PORT = 5000  
+BRIDGE_PC_PORT = 5001
 
 def request_file():
     filename = entry.get().strip()
@@ -20,8 +19,15 @@ def request_file():
         client.connect((BRIDGE_PC_IP, BRIDGE_PC_PORT))
         client.send(filename.encode())
 
-        # Receive the file
+        # Receive first response to check if the file exists
+        response = client.recv(4096)
+        if response == b"FILE_NOT_FOUND":
+            messagebox.showerror("Error", f"File '{filename}' not found on Server PC")
+            return  # Exit function without writing file
+
+        # Save received data into file
         with open(filename, "wb") as file:
+            file.write(response)  # Write the first received chunk
             while True:
                 data = client.recv(4096)
                 if not data:
@@ -34,7 +40,7 @@ def request_file():
         messagebox.showerror("Error", f"Failed to get file: {e}")
     
     finally:
-        client.close()
+        client.close()  # Ensure socket is closed
 
 # GUI setup
 root = tk.Tk()
