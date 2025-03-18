@@ -84,7 +84,7 @@ class JCFileTransferApp:
                   relief=[("pressed", "sunken"), ("!pressed", "raised")],       # Pressing effect
                   bordercolor=[("pressed", "#606060")])                         # Darker border on press
 
-        # Configure accent button style
+        # Configure  accent button style
         style.configure("Accent.TButton",
                         font=("Arial", 12, "bold"),
                         padding=5,
